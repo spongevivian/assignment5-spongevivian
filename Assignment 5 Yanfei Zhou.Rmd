@@ -35,9 +35,12 @@ score_ctree <- ctree(factor(advice) ~ prior_prob_count + prior_percent_correct +
 ```{r}
 plot(score_ctree)
 ```
+Answer: The teacher should take more close look into these two behaviors: having done the problems before and getting more than 85, being given hints but could not get more than 62.9% problems correct.
 
 ```{r}
 D2$prediction <- predict(score_ctree, D2)
 ```
 
 Part III:
+
+Answer: For the predict part, we only take into consider the number of hints students have got and how they used the system, but in the actual assessment, the data being taken into consideration is more complicated. Therefore, while taking in more conditions and spliting the students into more categories, those who did not need intervene from teachers may actually need it. Those who were predicted to need the intervene of teachers may actually being exempted from it.
