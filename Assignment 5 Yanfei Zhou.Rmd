@@ -1,0 +1,43 @@
+---
+title: "Assignment 5"
+author: "Yanfei Zhou"
+date: "2017/11/14"
+output: html_document
+---
+
+Part I
+```{r}
+c.tree <- rpart(action ~ hint.y + complete, method="class", data=D1)
+```
+
+```{r}
+printcp(c.tree)
+```
+
+```{r}
+post(c.tree, file = "tree.ps", title = "Session Completion Action: 1 - Ask teacher, 2 - Start new session, 3 - Give up")
+```
+
+Part II
+
+```{r}
+hist(D1$score)
+```
+
+```{r}
+D1$advice <- ifelse(D1$score <=0.4, "intervene", ifelse(D1$score > 0.4 & D1$score <=0.8, "monitor", "no action"))
+```
+
+```{r}
+score_ctree <- ctree(factor(advice) ~ prior_prob_count + prior_percent_correct + hints, D1)
+```
+
+```{r}
+plot(score_ctree)
+```
+
+```{r}
+D2$prediction <- predict(score_ctree, D2)
+```
+
+Part III:
